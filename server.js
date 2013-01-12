@@ -1,6 +1,6 @@
 var redirectTable = {
-  stribild_pi: { status: 302, url: 'https://www.stribild.com/Content/pdf/stribild_prescribing_information.pdf'},
-  complera_pi: { status: 307, url: 'http://www.gilead.com/pdf/complera_pi.pdf'}
+  pdf_kit: { status: 302, url: 'http://pdfkit.org/example.pdf'},
+  moz_pdf: { status: 307, url: 'http://plugindoc.mozdev.org/testpages/test.pdf'}
 };
 
 var http = require('http');
