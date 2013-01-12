@@ -8,9 +8,10 @@ var urlMod = require('url');
 
 var server = http.createServer(function(req, res) {
   var pathname = urlMod.parse(req.url).pathname;
-  pathname = pathname.slice(1, pathname.length);
+  // drop the leading '/asset/' portion of the request url
+  pathname = pathname.replace('/asset/', '');
 
-  if (redirectTable.hasOwnProperty(pathname)) {
+  if (redirectTable[pathname] !== undefined) {
     var row = redirectTable[pathname];
     res.writeHead(row.status, {
       'Location': row.url
