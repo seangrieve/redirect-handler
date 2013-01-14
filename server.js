@@ -7,7 +7,7 @@ var http = require('http');
 var urlMod = require('url');
 
 var server = http.createServer(function(req, res) {
-  var pathname = urlMod.parse(req.url).pathname;
+  var pathname = urlMod.parse(req.url).pathname.toLowerCase();
   // drop the leading '/asset/' portion of the request url
   pathname = pathname.replace('/asset/', '');
 
@@ -16,18 +16,12 @@ var server = http.createServer(function(req, res) {
     res.writeHead(row.status, {
       'Location': row.url
     });
-    res.end();
   }
   else {
-    var message = 'Asset not found';
-    res.writeHead(200, {
-      'Content-Type': 'text/plain',
-      'Content-Length': message.length
-    });
-    res.end(message);
+    res.writeHead(404);
   }
-    
- 
+
+  res.end();
 });
 server.listen(1337, '127.0.0.1');
 console.log('Redirect handler started');
